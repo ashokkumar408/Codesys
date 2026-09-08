@@ -1,0 +1,76 @@
+[user]
+ email = ashokkumar.poornakumar@trumpf.com
+ name = Ashok kumar P
+
+[core]
+ autocrlf = false
+ whitespace = -trailing-space,cr-at-eol
+ editor = 'C:/Program Files/Notepad++/notepad++.exe' -multiInst -nosession
+
+[alias]
+#Difference
+ di = difftool --dir-diff
+ dis = di --staged
+ tip = log -1 head
+ undo = restore
+
+#Branching
+ sw = switch
+ make = switch --create
+ rv = remote -v
+ del = branch -D
+ br = branch
+
+#Commit
+ st = status
+ cm = commit -m
+ uncommit = reset HEAD~1 --mixed
+ last = log -1 HEAD --stat
+ gl = config --global -l
+ lg = log -n 20 --graph --format='%h  %C(yellow)%an%Creset  %C(green)%as%Creset  %s %C(brightblue)%d%Creset'
+ find = log --format='%h  %C(yellow)%an%Creset  %C(green)%as%Creset  %s %C(brightblue)%d%Creset' --grep
+ brl = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+
+#stash
+ stashwith = stash push -m
+ sl = stash list
+
+[diff]
+ tool = winmerge
+[difftool]
+ prompt = true
+[difftool "winmerge"]
+ cmd = 'C:/Apps/WinMerge/WinMergeU.exe' -e -r -dl \"Old $BASE\" -dr \"New $BASE\" \"$LOCAL\" \"$REMOTE\"
+ trustExitCode = true
+
+[merge]
+ tool = P4Merge
+ conflictstyle = diff3
+[mergetool]
+ prompt = true
+[mergetool "P4Merge"]
+ path = 'C:/Apps/P4Merge/P4Merge.exe'
+ keepBackup = false
+
+[http]
+ sslbackend = schannel
+ proxy = http://poornakumaras@srv34prox.corp.trumpf.com:80
+ sslverify = false
+
+[credential]
+ helper = wincred
+[credential "http://srv34prox.corp.trumpf.com"]
+ provider = generic
+
+[filter "lfs"]
+ process = git-lfs filter-process
+ required = true
+ clean = git-lfs clean -- %f
+ smudge = git-lfs smudge -- %f
+
+[lfs]
+ skipSmudge = true
+
+[init]
+ defaultBranch = main
+ 
